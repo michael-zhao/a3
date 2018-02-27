@@ -119,7 +119,15 @@ public class DLList<E>  {
     public void append(E v) {
         //TODO 3. This is the third method to write and test
         size++;
+        if (last == null) {
+        	last = new Node(null, v, null);
+        	first = last;
+        }
         
+        else {
+        	last.next = new Node(last, v, null);
+        	last = last.next;
+        }
     }
 
 
