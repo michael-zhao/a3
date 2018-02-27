@@ -6,48 +6,104 @@ import org.junit.jupiter.api.Test;
 class DLListTest {
 
 	@Test
-	public void testPrepend() {
+	public void testConstructor() {
 		DLList<Integer> i = new DLList<>();
-		assertNull(i.first());
-		assertNull(i.last());
+		assertEquals("[]", i.toString());
+		assertEquals("[]",i.gnirtSot());
 		assertEquals(0, i.size());
-		i.prepend(4);
-		assertEquals("[4]", i.toString());
-		assertEquals(4, (int) i.value(i.first()));
-		assertEquals(4, (int) i.value(i.last()));
-		assertEquals(1, i.size());
-		i.prepend(7);
-		assertEquals("[7, 4]", i.toString());
-		assertEquals(7, (int) i.value(i.first()));
-		assertEquals(4, (int) i.value(i.last()));
-		assertEquals(2, i.size());
-		i.prepend(8);
-		assertEquals("[8, 7, 4]", i.toString());
-		assertEquals(8, (int) i.value(i.first()));
-		assertEquals(4, (int) i.value(i.last()));
-		assertEquals(3, i.size());
-		
-		DLList<String> l = new DLList<>();
-		assertNull(l.first());
-		assertNull(l.last());
-		assertEquals(0, l.size());
-		l.prepend("");		
-		assertEquals("[]", l.toString());
-		assertEquals("", l.value(l.first()));
-		assertEquals(1, l.size());
-		l.prepend("");
-		assertEquals("[, ]", l.toString());
-		l.prepend("A");
-		assertEquals("[A, , ]", l.toString());
 	}
 	
 	@Test
-	public void testgnirtSot() {
+	public void testPrepend() {
+		DLList<Integer> i = new DLList<>();
+		i.prepend(6);
+		assertEquals("[6]", i.toString());
+		assertEquals("[6]", i.gnirtSot());
+		assertEquals(1, i.size());
+		i.prepend(7);
+		assertEquals("[7, 6]", i.toString());
+		assertEquals("[6, 7]", i.gnirtSot());
+		assertEquals(2, i.size());
+		i.prepend(9);
+		assertEquals("[9, 7, 6]", i.toString());
+		assertEquals("[6, 7, 9]", i.gnirtSot());
+		assertEquals(3, i.size());
+		i.prepend(28);
+		assertEquals("[28, 9, 7, 6]", i.toString());
+		assertEquals("[6, 7, 9, 28]", i.gnirtSot());
+		assertEquals(4, i.size());
+		i.prepend(0);
+		assertEquals("[0, 28, 9, 7, 6]", i.toString());
+		assertEquals("[6, 7, 9, 28, 0]", i.gnirtSot());
+		assertEquals(5, i.size());
+		
+		DLList<String> l = new DLList<>();
+		l.prepend("");		
+		assertEquals("[]", l.toString());
+		assertEquals("[]", l.gnirtSot());
+		assertEquals(1, l.size());
+		l.prepend("");
+		assertEquals("[, ]", l.toString());
+		assertEquals("[, ]", l.gnirtSot());
+		assertEquals(2, l.size());
+		l.prepend("A");
+		assertEquals("[A, , ]", l.toString());
+		assertEquals("[, , A]", l.gnirtSot());
+		assertEquals(3, l.size());
+		l.prepend("Z");
+		assertEquals("[Z, A, , ]", l.toString());
+		assertEquals("[, , A, Z]", l.gnirtSot());
+		assertEquals(4, l.size());
+		l.prepend("Zoop");
+		assertEquals("[Zoop, Z, A, , ]", l.toString());
+		assertEquals("[, , A, Z, Zoop]", l.gnirtSot());
+		assertEquals(5, l.size());
+	}
+	
+	@Test
+	public void testAppend() {
+		DLList<Integer> d = new DLList<>();
+		d.append(12);
+		assertEquals("[12]", d.toString());
+		assertEquals("[12]", d.gnirtSot());
+		assertEquals(1, d.size());
+		d.append(77);
+		assertEquals("[12, 77]", d.toString());
+		assertEquals("[77, 12]", d.gnirtSot());
+		assertEquals(2, d.size());
+		d.append(445);
+		assertEquals("[12, 77, 445]", d.toString());
+		assertEquals("[445, 77, 12]", d.gnirtSot());
+		assertEquals(3, d.size());
+		d.append(-5);
+		assertEquals("[12, 77, 445, -5]", d.toString());
+		assertEquals("[-5, 445, 77, 12]", d.gnirtSot());
+		assertEquals(4, d.size());
+		d.append(0);
+		assertEquals("[12, 77, 445, -5, 0]", d.toString());
+		assertEquals("[0, -5, 445, 77, 12]", d.gnirtSot());
+		assertEquals(5, d.size());
+		
 		DLList<String> h = new DLList<>();
-		assertNull(h.first());
-		assertNull(h.last());
-		assertEquals(0, h.size());
-		
-		
+		h.append("hecc");
+		assertEquals("[hecc]", h.toString());
+		assertEquals("[hecc]", h.gnirtSot());
+		assertEquals(1, h.size());
+		h.append("henlo");
+		assertEquals("[hecc, henlo]", h.toString());
+		assertEquals("[henlo, hecc]", h.gnirtSot());
+		assertEquals(2, h.size());
+		h.append("");
+		assertEquals("[hecc, henlo, ]", h.toString());
+		assertEquals("[, henlo, hecc]", h.gnirtSot());
+		assertEquals(3, h.size());
+		h.append("go");
+		assertEquals("[hecc, henlo, , go]", h.toString());
+		assertEquals("[go, , henlo, hecc]", h.gnirtSot());
+		assertEquals(4, h.size());
+		h.append("hawks");
+		assertEquals("[hecc, henlo, , go, hawks]", h.toString());
+		assertEquals("[hawks, go, , henlo, hecc]", h.gnirtSot());
+		assertEquals(5, h.size());
 	}
 }

@@ -102,8 +102,7 @@ public class DLList<E>  {
         //        method gnirtSot thoroughly before starting on the next
         //        method. These two must be correct in order to be
         //        able to write and test all the others.
-    	size++;
-    	if (first == null) {
+    	if (last == null) {
     		first = new Node(null, v, null);
     		last = first;
     	}
@@ -112,13 +111,14 @@ public class DLList<E>  {
     		first.prev = new Node(null,v,first);
     		first = first.prev;
     	}
+    	
+    	size++;
     }
 
     /** add value v in a new node at the end of the list.
      *  This operation takes constant time. */
     public void append(E v) {
         //TODO 3. This is the third method to write and test
-        size++;
         if (last == null) {
         	last = new Node(null, v, null);
         	first = last;
@@ -128,6 +128,8 @@ public class DLList<E>  {
         	last.next = new Node(last, v, null);
         	last = last.next;
         }
+        
+        size++;
     }
 
 
