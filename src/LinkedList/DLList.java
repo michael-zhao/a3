@@ -140,7 +140,29 @@ public class DLList<E>  {
         //TODO 4. This method should take time proportional to min(k, size-k).
         // For example, if k <= size/2, search from the beginning of the
         // list, otherwise search from the end of the list.
+        assert k >= 0 && k < size;
         
+        Node st = last;
+        int count = size-1;
+        
+        if (k <= size/2) {
+        	st = first;
+        	count = 0;
+        }
+
+        while (st != null) {
+        	if (k == count) {
+        		return st;
+        	}
+        	if (k <= size/2) {           	
+        		count++;
+        		st = st.next;
+        	}
+        	else {   		
+        		count--;
+        		st = st.prev;
+        	}
+        }
         return null;
     }
     

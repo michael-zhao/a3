@@ -11,6 +11,11 @@ class DLListTest {
 		assertEquals("[]", i.toString());
 		assertEquals("[]",i.gnirtSot());
 		assertEquals(0, i.size());
+		
+		DLList<String> s = new DLList<>();
+		assertEquals("[]", s.toString());
+		assertEquals("[]", s.gnirtSot());
+		assertEquals(0, s.size());
 	}
 	
 	@Test
@@ -105,5 +110,32 @@ class DLListTest {
 		assertEquals("[hecc, henlo, , go, hawks]", h.toString());
 		assertEquals("[hawks, go, , henlo, hecc]", h.gnirtSot());
 		assertEquals(5, h.size());
+	}
+	
+	@Test
+	public void testgetNode() {
+		DLList<Integer> x = new DLList<>();
+		x.append(3);
+		x.append(5);
+		x.append(12);
+		x.append(2);
+		x.append(35);
+		assertEquals(x.first(), x.getNode(0));
+		assertEquals(x.first().next(), x.getNode(1));
+		assertEquals(x.first().next().next(), x.getNode(2));
+		assertEquals(x.last().prev(), x.getNode(3));
+		assertEquals(x.last(), x.getNode(4));
+		
+		DLList<String> s = new DLList<>();
+		s.append("a");
+		s.append("b");
+		s.append("c");
+		s.append("d");
+		s.append("e");
+		assertEquals(s.first(), s.getNode(0));
+		assertEquals(s.first().next(), s.getNode(1));
+		assertEquals(s.first().next().next(), s.getNode(2));
+		assertEquals(s.last().prev(), s.getNode(3));
+		assertEquals(s.last(), s.getNode(4));
 	}
 }
