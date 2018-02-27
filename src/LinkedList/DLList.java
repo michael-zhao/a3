@@ -22,6 +22,9 @@ public class DLList<E>  {
 
     /** Constructor: an empty linked list. */
     public DLList() {
+    	first = null;
+    	last = null;
+    	size = 0;
     }
 
     /** Return the number of values in this list.
@@ -79,7 +82,16 @@ public class DLList<E>  {
         //        Use the same scheme. Extreme case to watch out for:
         //        E is String and values are the empty string.
         //        You can't test this fully until #2, prepend, is written.
-        return "";
+    	String res = "[";
+    	Node n = last;
+    	while (n != null) {
+    		res += n.val;
+    		n = n.prev;
+    		if (n != null) {
+    			res += ", ";
+    		}
+    	}
+        return res + "]";
     }
     
 
@@ -90,13 +102,23 @@ public class DLList<E>  {
         //        method gnirtSot thoroughly before starting on the next
         //        method. These two must be correct in order to be
         //        able to write and test all the others.
-
+    	size++;
+    	if (first == null) {
+    		first = new Node(null, v, null);
+    		last = first;
+    	}
+    	
+    	else {
+    		first.prev = new Node(null,v,first);
+    		first = first.prev;
+    	}
     }
 
     /** add value v in a new node at the end of the list.
      *  This operation takes constant time. */
     public void append(E v) {
         //TODO 3. This is the third method to write and test
+        size++;
         
     }
 
