@@ -1,6 +1,6 @@
 package LinkedList;
 
-/* Time spent on a3:  hh hours and mm minutes.
+/* Time spent on a3:  05 hours and 45 minutes.
  *
  * When you change the above, please do it carefully. Change hh to
  * the hours and mm to the minutes and leave everything else as is.
@@ -140,7 +140,6 @@ public class DLList<E>  {
         //TODO 4. This method should take time proportional to min(k, size-k).
         // For example, if k <= size/2, search from the beginning of the
         // list, otherwise search from the end of the list.
-        assert k >= 0 && k < size;
         
         Node st = last;
         int count = size-1;
@@ -171,7 +170,28 @@ public class DLList<E>  {
      * Precondition: n must be a node of this list; it may not be null. */
     public void delete(Node n) {
         //TODO 5. Make sure this method takes constant time. 
-
+    	
+    	if (n.prev == null && n.next == null) {
+    		first = null;
+    		last = null;
+    	}
+    	    	
+    	else if (n == first) {
+    		first.next.prev = null;
+    		first = first.next;
+    	}
+    	
+    	else if (n == last) {
+    		last.prev.next = null;
+    		last = last.prev;
+    	}
+    	
+    	else {
+    		n.prev.next = n.next;
+    		n.next.prev = n.prev;
+    	}
+    	
+    	size--;
     }
 
     /** Insert value v in a new node after node n.
@@ -179,6 +199,18 @@ public class DLList<E>  {
      * Precondition: n must be a node of this list; it may not be null. */
     public void insertAfter(E v, Node n) {
         //TODO 6. Make sure this method takes constant time. 
+    	
+    	if (n == last) {
+    		last.next = new Node(last, v, null);
+    		last = last.next;
+    	}
+    	
+    	else {
+    		n.next = new Node(n, v, n.next);
+    		n.next.next.prev = n.next;
+    	}
+    	
+    	size++;
     }
 
  

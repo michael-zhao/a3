@@ -138,4 +138,134 @@ class DLListTest {
 		assertEquals(s.last().prev(), s.getNode(3));
 		assertEquals(s.last(), s.getNode(4));
 	}
+	
+	@Test
+	public void testDelete() {
+		DLList<Integer> i = new DLList<>();
+		i.append(3);
+		i.append(5);
+		i.append(7);
+		i.append(9);
+		i.append(15);
+		
+		i.delete(i.first());
+		assertEquals("[5, 7, 9, 15]", i.toString());
+		assertEquals("[15, 9, 7, 5]", i.gnirtSot());
+		assertEquals(4, i.size());
+		i.delete(i.last());
+		assertEquals("[5, 7, 9]", i.toString());
+		assertEquals("[9, 7, 5]", i.gnirtSot());
+		assertEquals(3, i.size());
+		i.delete(i.getNode(1));
+		assertEquals("[5, 9]", i.toString());
+		assertEquals("[9, 5]", i.gnirtSot());
+		assertEquals(2, i.size());
+		i.delete(i.getNode(0));
+		assertEquals("[9]", i.toString());
+		assertEquals("[9]", i.gnirtSot());
+		assertEquals(1, i.size());
+		i.delete(i.getNode(0));
+		assertEquals("[]", i.toString());
+		assertEquals("[]", i.gnirtSot());
+		assertEquals(0, i.size());
+		
+		DLList<String> h = new DLList<>();
+		h.append("hello");
+		h.append("bye");
+		h.append("nani");
+		
+		h.delete(h.getNode(0));
+		assertEquals("[bye, nani]", h.toString());
+		assertEquals("[nani, bye]", h.gnirtSot());
+		assertEquals(2, h.size());
+		h.delete(h.getNode(1));
+		assertEquals("[bye]", h.toString());
+		assertEquals("[bye]", h.gnirtSot());
+		assertEquals(1, h.size());
+		h.delete(h.getNode(0));
+		assertEquals("[]", h.toString());
+		assertEquals("[]", h.gnirtSot());
+		assertEquals(0, h.size());
+		
+		DLList<Integer> j = new DLList<>();
+		j.prepend(4);
+		j.prepend(8);
+		j.prepend(16);
+		j.prepend(32);
+		j.prepend(64);
+		
+		j.delete(j.first());
+		assertEquals("[32, 16, 8, 4]", j.toString());
+		assertEquals("[4, 8, 16, 32]", j.gnirtSot());
+		assertEquals(4, j.size());
+		j.delete(j.getNode(2));
+		assertEquals("[32, 16, 4]", j.toString());
+		assertEquals("[4, 16, 32]", j.gnirtSot());
+		assertEquals(3, j.size());
+		j.delete(j.getNode(1));
+		assertEquals("[32, 4]", j.toString());
+		assertEquals("[4, 32]", j.gnirtSot());
+		assertEquals(2, j.size());
+		j.delete(j.getNode(0));
+		assertEquals("[4]", j.toString());
+		assertEquals("[4]", j.gnirtSot());
+		assertEquals(1, j.size());
+		j.delete(j.getNode(0));
+		assertEquals("[]", j.toString());
+		assertEquals("[]", j.gnirtSot());
+		assertEquals(0, j.size());
+	}
+	
+	@Test
+	public void testinsertAfter() {
+		DLList<Integer> i = new DLList<>();
+		i.prepend(3);
+		i.prepend(12);
+		i.prepend(4);
+		i.prepend(8);
+		i.prepend(32);
+		
+		i.insertAfter(9, i.first());
+		assertEquals("[32, 9, 8, 4, 12, 3]", i.toString());
+		assertEquals("[3, 12, 4, 8, 9, 32]", i.gnirtSot());
+		assertEquals(6, i.size());
+		
+		i.insertAfter(15, i.last());
+		assertEquals("[32, 9, 8, 4, 12, 3, 15]", i.toString());
+		assertEquals("[15, 3, 12, 4, 8, 9, 32]", i.gnirtSot());
+		assertEquals(7, i.size());
+		
+		i.insertAfter(0, i.getNode(3));
+		assertEquals("[32, 9, 8, 4, 0, 12, 3, 15]", i.toString());
+		assertEquals("[15, 3, 12, 0, 4, 8, 9, 32]", i.gnirtSot());
+		assertEquals(8, i.size());
+		
+		i.insertAfter(434, i.getNode(5));
+		assertEquals("[32, 9, 8, 4, 0, 12, 434, 3, 15]", i.toString());
+		assertEquals("[15, 3, 434, 12, 0, 4, 8, 9, 32]", i.gnirtSot());
+		assertEquals(9, i.size());
+		
+		DLList<String> s = new DLList<>();
+		s.append("hi");
+		
+		s.insertAfter("bye", s.last());
+		assertEquals("[hi, bye]", s.toString());
+		assertEquals("[bye, hi]", s.gnirtSot());
+		assertEquals(2, s.size());
+		
+		s.insertAfter("sigh", s.first());
+		assertEquals("[hi, sigh, bye]", s.toString());
+		assertEquals("[bye, sigh, hi]", s.gnirtSot());
+		assertEquals(3, s.size());
+		
+		s.insertAfter("rye", s.getNode(1));
+		assertEquals("[hi, sigh, rye, bye]", s.toString());
+		assertEquals("[bye, rye, sigh, hi]", s.gnirtSot());
+		assertEquals(4, s.size());
+		
+		s.insertAfter("lie", s.getNode(2));
+		assertEquals("[hi, sigh, rye, lie, bye]", s.toString());
+		assertEquals("[bye, lie, rye, sigh, hi]", s.gnirtSot());
+		assertEquals(5, s.size());
+	}
 }
